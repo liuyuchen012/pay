@@ -28,22 +28,32 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const serverUrl = "http://pay.615mc.cn"; // 替换为你的服务器地址（HTTP 协议）
+            let serverUrl = "example.com"; // 替换为你的服务器地址（无协议部分）
 
-            // 创建一个函数检测服务器状态
+            // 根据当前协议决定使用 HTTP 或 HTTPS
+            const currentProtocol = window.location.protocol;
+            if (currentProtocol === "https:") {
+                window.location.href = http://615mc.cn/pay;
+            } else {
+                window.location.href = http://615mc.cn/pay;
+            }
+
+            // 检测服务器状态
             function checkServerStatus() {
-                fetch(serverUrl, { 
-                    method: "HEAD", 
-                    mode: "no-cors" // 允许进行跨域请求，特别是 HTTP 请求 
-                })
-                .then(response => {
-                    // 如果请求成功，跳转到服务器
-                    window.location.href = serverUrl;
-                })
-                .catch(() => {
-                    // 如果请求失败，显示404信息
-                    show404();
-                });
+                fetch(serverUrl, { method: "HEAD" })
+                    .then(response => {
+                        if (response.ok) {
+                            // 如果服务器在线，重定向到服务器
+                            window.location.href = serverUrl;
+                        } else {
+                            // 显示404信息
+                            show404();
+                        }
+                    })
+                    .catch(() => {
+                        // 如果请求失败，显示404信息
+                        show404();
+                    });
             }
 
             // 显示404信息
@@ -51,7 +61,7 @@
                 const message = document.querySelector(".message");
                 message.innerHTML = `
                     <h1>404</h1>
-                    <p>Server is currently offline or unavailable.</p>
+                    <p>Server is currently offline.</p>
                 `;
             }
 
