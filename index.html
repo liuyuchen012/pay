@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>615mc支付api | 门户</title>
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?0b8aa63c1479c161d389826c4db88f9b";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Status Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .message {
+            text-align: center;
+        }
+        .message h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .message p {
+            font-size: 1.2em;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const serverUrl = "http://pay.615mc.top"; // 替换为你的服务器地址
+
+            // 创建一个函数检测服务器状态
+            function checkServerStatus() {
+                fetch(serverUrl, { method: "HEAD" })
+                    .then(response => {
+                        if (response.ok) {
+                            // 如果服务器在线，重定向到服务器
+                            window.location.href = serverUrl;
+                        } else {
+                            // 显示404信息
+                            show404();
+                        }
+                    })
+                    .catch(() => {
+                        // 如果请求失败，显示404信息
+                        show404();
+                    });
+            }
+
+            // 显示404信息
+            function show404() {
+                const message = document.querySelector(".message");
+                message.innerHTML = `
+                    <h1>404</h1>
+                    <p>Server is currently offline.</p>
+                `;
+            }
+
+            // 开始检测
+            checkServerStatus();
+        });
+    </script>
 </head>
 <body>
-    <h2>键入：http://mc.615mc.cn?monnny=金额&name=商品名称</h2>
+    <div class="message">
+        <h1>Checking server status...</h1>
+        <p>Please wait while we check the server availability.</p>
+    </div>
 </body>
 </html>
