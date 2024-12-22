@@ -33,7 +33,7 @@
             let fullServerUrl = `${window.location.protocol}//${serverUrl}`; // 根据当前协议构建完整URL
 
             // 检测服务器状态
-            function checkServerStatus() {
+            function checkServerStatus(); {
                 fetch(`${baseUrl}${serverUrl}`, { method: "HEAD" })
                     .then(response => {
                         if (response.ok) {
