@@ -28,23 +28,17 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let serverUrl = "http://pay.615mc.cn"; // 替换为你的服务器地址（无协议部分）
-
-            // 根据当前协议决定使用 HTTP 或 HTTPS
-            const currentProtocol = window.location.protocol;
-            if (currentProtocol === "https:") {
-                window.location.href = http://615mc.cn/pay;
-            } else {
-                window.location.href = http://615mc.cn/pay;
-            }
+            let serverUrl = "pay.615mc.cn"; // 服务器地址（无协议和路径部分）
+            let baseUrl = "http://615mc.cn/"; // 基础URL
+            let fullServerUrl = `${window.location.protocol}//${serverUrl}`; // 根据当前协议构建完整URL
 
             // 检测服务器状态
             function checkServerStatus() {
-                fetch(serverUrl, { method: "HEAD" })
+                fetch(`${baseUrl}${serverUrl}`, { method: "HEAD" })
                     .then(response => {
                         if (response.ok) {
                             // 如果服务器在线，重定向到服务器
-                            window.location.href = serverUrl;
+                            window.location.href = fullServerUrl;
                         } else {
                             // 显示404信息
                             show404();
