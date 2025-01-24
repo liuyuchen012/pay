@@ -48,9 +48,16 @@
             const numbersStr = numbers.join(' ');  // 将数字用空格分隔
             document.getElementById('numbers').textContent = '抽取的代码: ' + numbersStr;
 
-            // 使用QRCode.js生成二维码
-            QRCode.toCanvas(document.getElementById('qrcode'), numbersStr, function (error) {
-                if (error) console.error(error);
+            // 使用QRCode.js生成二维码并展示为img标签
+            QRCode.toDataURL(numbersStr, function (error, url) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    const qrImage = document.createElement('img');
+                    qrImage.src = url;
+                    document.getElementById('qrcode').innerHTML = ''; // 清空之前的二维码
+                    document.getElementById('qrcode').appendChild(qrImage);
+                }
             });
         }
     </script>
