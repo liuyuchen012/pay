@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机抽取数字</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #numbers {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>随机抽取4个小于10的数字</h1>
+    <button onclick="generateNumbers()">抽取数字</button>
+    <div id="numbers"></div>
+
+    <script>
+        function generateNumbers() {
+            let numbers = [];
+            while (numbers.length < 4) {
+                let randomNum = Math.floor(Math.random() * 10); // 随机生成0到9之间的数字
+                if (!numbers.includes(randomNum)) {
+                    numbers.push(randomNum);
+                }
+            }
+            document.getElementById('numbers').textContent = '抽取的数字: ' + numbers.join(', ');
+        }
+    </script>
+</body>
+</html>
