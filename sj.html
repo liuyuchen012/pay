@@ -27,7 +27,7 @@
 </head>
 <body>
     <h1>随机抽取4个小于10的数字</h1>
-    <button onclick="generateNumbers()">抽取数字</button>
+    <button onclick="generateNumbers()">抽取代码</button>
     <div id="numbers"></div>
 
     <script>
@@ -39,7 +39,7 @@
                     numbers.push(randomNum);
                 }
             }
-            document.getElementById('numbers').textContent = '抽取的数字: ' + numbers.join(', ');
+            document.getElementById('numbers').textContent = '抽取的数字: ' + numbers.join(' ');
         }
     </script>
 </body>
