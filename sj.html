@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>抽奖系统</title>
+    <title>代码抽取系统</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,12 +23,18 @@
             font-size: 24px;
             font-weight: bold;
         }
+        #qrcode {
+            margin-top: 20px;
+        }
     </style>
+    <!-- 引入QRCode.js库 -->
+    <script src="./qrcode.min.js"></script>
 </head>
 <body>
-    <h1>抽奖系统</h1>
+    <h1>代码抽取系统</h1>
     <button onclick="generateNumbers()">抽取代码</button>
     <div id="numbers"></div>
+    <div id="qrcode"></div>
 
     <script>
         function generateNumbers() {
@@ -39,7 +45,13 @@
                     numbers.push(randomNum);
                 }
             }
-            document.getElementById('numbers').textContent = '抽取的代码: ' + numbers.join(' ');
+            const numbersStr = numbers.join(' ');  // 将数字用空格分隔
+            document.getElementById('numbers').textContent = '抽取的代码: ' + numbersStr;
+
+            // 使用QRCode.js生成二维码
+            QRCode.toCanvas(document.getElementById('qrcode'), numbersStr, function (error) {
+                if (error) console.error(error);
+            });
         }
     </script>
 </body>
